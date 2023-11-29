@@ -7,12 +7,16 @@ for (let i = 0; i < document.querySelectorAll('.drum').length; i++) {
       let buttonInnerHTML = this.innerHTML;
 
       makeSound(buttonInnerHTML);
+
+      buttonAnimation(buttonInnerHTML);
    }
 }
 
 // Detecting keyboard press
 document.addEventListener('keypress', function (event) {
    makeSound(event.key);
+
+   buttonAnimation(event.key);
 });
 
 // make sound
@@ -57,4 +61,14 @@ function makeSound(key) {
          console.log(buttonInnerHTML);
          break;
    }
+}
+
+function buttonAnimation(currentKey) {
+   let activeButton = document.querySelector('.' + currentKey);
+
+   activeButton.classList.add('pressed');
+
+   setTimeout(() => {
+      activeButton.classList.remove('pressed');
+   }, 100);
 }
